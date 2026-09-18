@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzaria Fornetto - Cardápio & Delivery</title>
+    <!-- Fonte Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+ <style>
+        /* CSS Reset & Variáveis */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-color: #e63946;
+            --secondary-color: #ffb703;
+            --dark-color: #1d3557;
+            --light-bg: #f8f9fa;
+            --text-color: #333;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+
+        .btn-header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-header:hover {
+            background-color: #c1121f;
+        }
+
+        /* Hero / Banner */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 5rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-status {
+            display: inline-block;
+            background-color: #2a9d8f;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Cardápio & Filtros */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .filtros {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .btn-filtro {
+            border: 1px solid var(--primary-color);
+            background: none;
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-filtro.active, .btn-filtro:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card-pizza {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-pizza img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-tag {
+            font-size: 0.7rem;
+            background-color: #e9c46a;
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            height: fit-content;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .btn-pedir {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            text-decoration: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Informações Locais */
+        .info-section {
+            background-color: #fff;
+            padding: 3rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .info-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-box h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        /* Avaliações */
+        .reviews-section {
+            background-color: var(--light-bg);
+            padding: 3rem 1rem;
+        }
+
+.review-card {
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.review-card strong {
+    color: var(--text-color);
+}
+
+        .review-stars {
+            color: #ffb703;
+            font-size: 1.2rem;
+        }
+
+        /* Botão Flutuante WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        /* Rodapé */
+footer {
+    background-color: #050505;
+    color: var(--subtext-color);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+}
+        /* Responsividade */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Fornetto</div>
+            <a href="#cardapio" class="btn-header">Ver Cardápio</a>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <section class="hero">
+  <div class="pill"></div>
+  <span id="hero-status" class="hero-status"></span>
+  <h1>A verdadeira pizza no forno a lenha</h1>
+  <p>Massa artesanal, ingredientes selecionados e entrega rápida.</p>
+  <a href="..." class="btn">Fazer Pedido Direto</a>
+</section>
+
+    <!-- Cardápio -->
+    <main class="container" id="cardapio">
+        <h2 class="section-title">Nosso Cardápio</h2>
+
+        <!-- Filtros do Cardápio -->
+        <div class="filtros">
+            <button class="btn-filtro active" onclick="filtrar('todos')">Todos</button>
+            <button class="btn-filtro" onclick="filtrar('tradicional')">Tradicionais</button>
+            <button class="btn-filtro" onclick="filtrar('especial')">Especiais</button>
+            <button class="btn-filtro" onclick="filtrar('rodizio')">Rodízio</button>
+            <button class="btn-filtro" onclick="filtrar('veggie')">Vegetarianas</button>
+        </div>
+
+        <!-- Grade de Produtos -->
+        <div class="menu-grid">
+            
+<!-- Item Rodízio Completo -->
+            <div class="card-pizza" data-categoria="rodizio">
+                <img src="rodizio.jpeg" alt="Rodízio Completo">
+                <div class="card-content">
+                    <div class="card-title">
+                        Rodízio Completo <span class="card-tag">Presencial</span>
+                    </div>
+                    <p class="card-desc">Mais de 30 sabores de pizzas salgadas e doces, inclui entradas da casa e refrigerante refil.</p>
+                    <div class="card-footer">
+                        <span class="price">R$ 59,90 /p</span>
+                        <a href="https://wa.me/5500000000000?text=Quero%20reservar%20mesa%20para%20o%20Rodízio" class="btn-pedir">Reservar</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 1 -->
+            <div class="card-pizza" data-categoria="tradicional">
+                <img src="alafornetto.jpeg" alt="Pizza Á la Fornetto">
+                <div class="card-content">
+                    <div class="card-title">
+                        Á la Fornetto
+                    </div>
+                    <p class="card-desc">Molho de tomate, muçarela, lombinho, milho, palmito, bacon e orégano.</p>
+                    <div class="card-footer">
+                        <span class="price">R$ R$ 53,00</span>
+                        <a href="https://wa.me/5500000000000?text=Quero%20uma%20Calabresa%20Premium" class="btn-pedir">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="card-pizza" data-categoria="especial">
+                <img src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=500&q=80" alt="Pizza Calabresa">
+                <div class="card-content">
+                    <div class="card-title">
+                        Calabresa 
+                    </div>
+                    <p class="card-desc">Molho de tomate, muçarela, presunto, calabresa e orégano.</p>
+                    <div class="card-footer">
+                        <span class="price">R$ 52,90</span>
+                        <a href="https://wa.me/5500000000000?text=Quero%20uma%20Margherita" class="btn-pedir">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="card-pizza" data-categoria="especial">
+                <img src= "FrangoCatupiry.jpeg" alt="Pizza de Frango com Catupiry">
+                <div class="card-content">
+                    <div class="card-title">
+                        Frango com Catupiry
+                    </div>
+                    <p class="card-desc">Molho de tomate, muçarela, frango, catupiry e orégano.</p>
+                    <div class="card-footer">
+                        <span class="price">R$ 53,00</span>
+                        <a href="https://wa.me/5500000000000?text=Quero%20uma%204%20Queijos" class="btn-pedir">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+           <!-- Item 4 -->
+            <div class="card-pizza" data-categoria="especial">
+                <img src="docheff.jpeg" alt="Pizza Do Cheff">
+                <div class="card-content">
+                    <div class="card-title">
+                        Do Cheff
+                    </div>
+                    <p class="card-desc">Molho de tomate, muçarela, milho, cheddar, bacon e orégano.</p>
+                    <div class="card-footer">
+                        <span class="price">R$ 53,00</span>
+                        <a href="https://wa.me/5500000000000?text=Quero%20uma%204%20Queijos" class="btn-pedir">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+           <!-- Item 5 -->
+            <div class="card-pizza" data-categoria="especial">
+                <img src="brocoliscombacon.jpeg" alt="Pizza Brocolis com Bacon">
+                <div class="card-content">
+                    <div class="card-title">
+                        Brócolis com Bacon
+                    </div>
+                    <p class="card-desc">Molho de tomate, muçarela, frango, catupiry e orégano.</p>
+                    <div class="card-footer">
+                        <span class="price">R$ 58,00</span>
+                        <a href="https://wa.me/5500000000000?text=Quero%20uma%204%20Queijos" class="btn-pedir">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+           <!-- Item 6 -->
+            <div class="card-pizza" data-categoria="especial">
+                <img src="lombinho.jpeg" alt="Pizza de Lombinho">
+                <div class="card-content">
+                    <div class="card-title">
+                        Lombinho
+                    </div>
+                    <p class="card-desc">Molho de tomate, muçarela, lombinho, catupiry e orégano.</p>
+                    <div class="card-footer">
+                        <span class="price">R$ 53,00</span>
+                        <a href="https://wa.me/5500000000000?text=Quero%20uma%204%20Queijos" class="btn-pedir">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+<!-- Item 7 -->
+            <div class="card-pizza" data-categoria="veggie">
+                <img src="brocolisccatupiry.jpeg" alt="Pizza Brócolis com Catupiry">
+                <div class="card-content">
+                    <div class="card-title">
+                        Brócolis com Catupiry<span class="card-tag">Veggie</span> 
+                    </div>
+                    <p class="card-desc">Molho de tomate, muçarela, presunto, calabresa e orégano.</p>
+                    <div class="card-footer">
+                        <span class="price">R$ 52,90</span>
+                        <a href="https://wa.me/5500000000000?text=Quero%20uma%20Margherita" class="btn-pedir">Pedir</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Informações Básicas, Mapa e Reservas -->
+    <section class="info-section">
+        <div class="info-grid">
+            <div class="info-box">
+                <h3>Horário de Funcionamento</h3>
+                <p><strong>Segunda a Sexta:</strong> 18:30–23:00</p>
+                <p><strong>Sábado:</strong> 21:30 às 00:00</p>
+                <p><em>Domingo: 18:30–23:00</em></p>
+                <br>
+                <h3>Contato & Reservas</h3>
+                <p><strong>Telefone:</strong> (44) 3522-4245</p>
+                <p><strong>Instagram:</strong> @fornetto_goioere</p>
+                <p><em>Rodízio disponível de Quarta e Sexta</em></p>
+            </div>
+            
+            <div class="info-box">
+                <h3>Onde Estamos</h3>
+                <p>Jardim Lindóia, Goioerê - PR, 87303-316</p>
+                <br>
+                <div class="map-container">
+                    <!-- Exemplo de Mapa do Google Integrado -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3639.566674768955!2d-53.02563909135405!3d-24.18692530063331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f28b42494cbfa1%3A0x1d135e7d7ec1b30e!2sFornetto%20Pizzaria!5e0!3m2!1spt-BR!2sbr!4v1789644608936!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+        </div>
+    </section>
+
+ <!-- Avaliações dos Clientes -->
+<section class="reviews-section">
+    <div class="container">
+        <h2 class="section-title">O que dizem nossos clientes</h2>
+        <div class="review-card">
+            <div style="margin-bottom: 0.5rem;">
+                <span style="color: #ffb703; font-size: 1.2rem;">★★★★★</span> 
+                <strong style="color: #1d3557;"> - Ricardo S.</strong>
+            </div>
+            <p>"A melhor pizza da região! A massa é super leve e os ingredientes são nitidamente frescos. Chegou super quente."</p>
+        </div>
+        <div class="review-card">
+            <div style="margin-bottom: 0.5rem;">
+                <span style="color: #ffb703; font-size: 1.2rem;">★★★★★</span> 
+                <strong style="color: #1d3557;"> - Amanda M.</strong>
+            </div>
+            <p>"Atendimento excelente no salão e o delivery é extremamente rápido. A pizza de 4 queijos trufada é imperdível!"</p>
+        </div>
+    </div>
+</section>
+
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://wa.me/5500000000000?text=Olá!%20Vim%20pelo%20site." class="whatsapp-float" target="_blank" title="Falar no WhatsApp">
+        💬
+    </a>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>© 2026 Pizzaria Fornetto - Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Scripts de Interatividade (Filtros do Cardápio) -->
+    <script>
+        function filtrar(categoria) {
+            const cards = document.querySelectorAll('.card-pizza');
+            const botoes = document.querySelectorAll('.btn-filtro');
+
+            // Atualiza o estado dos botões
+            botoes.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Exibe ou oculta os pratos do cardápio
+            cards.forEach(card => {
+                if (categoria === 'todos' || card.dataset.categoria === categoria) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
