@@ -15,28 +15,31 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        :root {
-            --primary-color: #e63946;
-            --secondary-color: #ffb703;
-            --dark-color: #1d3557;
-            --light-bg: #f8f9fa;
-            --text-color: #333;
-        }
+:root {
+    --primary-color: #e63946;
+    --secondary-color: #ffb703;
+    --dark-color: #0d0d0d;
+    --light-bg: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #f1f1f1;
+    --subtext-color: #a0a0a0;
+}
 
-        body {
-            background-color: var(--light-bg);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
+body {
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+}
         /* Cabeçalho */
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+ header {
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+
 
         .header-container {
             max-width: 1200px;
@@ -105,12 +108,12 @@
             padding: 0 1rem;
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            color: var(--dark-color);
-            margin-bottom: 1.5rem;
-        }
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
 
         .filtros {
             display: flex;
@@ -142,14 +145,14 @@
             gap: 1.5rem;
         }
 
-        .card-pizza {
-            background: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-        }
+.card-pizza {
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+}
 
         .card-pizza img {
             width: 100%;
@@ -180,12 +183,12 @@
             height: fit-content;
         }
 
-        .card-desc {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
+.card-desc {
+    font-size: 0.9rem;
+    color: var(--subtext-color);
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
 
         .card-footer {
             display: flex;
@@ -193,11 +196,11 @@
             align-items: center;
         }
 
-        .price {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--dark-color);
-        }
+       .price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
 
         .btn-pedir {
             background-color: var(--secondary-color);
@@ -210,11 +213,11 @@
         }
 
         /* Informações Locais */
-        .info-section {
-            background-color: #fff;
-            padding: 3rem 1rem;
-            margin-top: 3rem;
-        }
+.info-section {
+    background-color: var(--card-bg);
+    padding: 3rem 1rem;
+    margin-top: 3rem;
+}
 
         .info-grid {
             max-width: 1200px;
@@ -237,10 +240,10 @@
         }
 
         /* Avaliações */
-        .reviews-section {
-            background-color: var(--light-bg);
-            padding: 3rem 1rem;
-        }
+ .reviews-section {
+    background-color: var(--light-bg);
+    padding: 3rem 1rem;
+}
 
 .review-card {
     background: var(--card-bg);
@@ -254,7 +257,10 @@
     color: var(--text-color);
 }
 
-        .review-stars {
+      .review-stars {
+    color: #ffb703 !important; /* Amarelo dourado */
+    font-size: 1.2rem;
+}  .review-stars {
             color: #ffb703;
             font-size: 1.2rem;
         }
@@ -299,7 +305,7 @@ footer {
     <!-- Cabeçalho -->
     <header>
         <div class="header-container">
-            <div class="logo">Fornetto</div>
+            <div class="logo">🍕Fornetto🇮🇹</div>
             <a href="#cardapio" class="btn-header">Ver Cardápio</a>
         </div>
     </header>
@@ -310,7 +316,7 @@ footer {
   <span id="hero-status" class="hero-status"></span>
   <h1>A verdadeira pizza no forno a lenha</h1>
   <p>Massa artesanal, ingredientes selecionados e entrega rápida.</p>
-  <a href="..." class="btn">Fazer Pedido Direto</a>
+  <a href="https://wa.me/5500000000000?text=Olá,%20gostaria%20de%20fazer%20um%20pedido" class="btn-header" style="background-color: var(--secondary-color); color: #000;">Fazer Pedido Direto</a>
 </section>
 
     <!-- Cardápio -->
@@ -479,26 +485,93 @@ footer {
     </section>
 
  <!-- Avaliações dos Clientes -->
-<section class="reviews-section">
-    <div class="container">
-        <h2 class="section-title">O que dizem nossos clientes</h2>
-        <div class="review-card">
-            <div style="margin-bottom: 0.5rem;">
-                <span style="color: #ffb703; font-size: 1.2rem;">★★★★★</span> 
-                <strong style="color: #1d3557;"> - Ricardo S.</strong>
+<!-- Avaliações dos Clientes -->
+    <section class="reviews-section">
+        <div class="container">
+            <h2 class="section-title">O que dizem nossos clientes</h2>
+            
+            <div class="review-card">
+                <div>
+                    <span style="color: #ffb703; font-size: 1.2rem;">★★★★★</span>
+                    <strong> - Ricardo S.</strong>
+                </div>
+                <p>"A melhor pizza da região! A massa é super leve e os ingredientes são nitidamente frescos. Chegou super quente."</p>
             </div>
-            <p>"A melhor pizza da região! A massa é super leve e os ingredientes são nitidamente frescos. Chegou super quente."</p>
-        </div>
-        <div class="review-card">
-            <div style="margin-bottom: 0.5rem;">
-                <span style="color: #ffb703; font-size: 1.2rem;">★★★★★</span> 
-                <strong style="color: #1d3557;"> - Amanda M.</strong>
-            </div>
-            <p>"Atendimento excelente no salão e o delivery é extremamente rápido. A pizza de 4 queijos trufada é imperdível!"</p>
-        </div>
-    </div>
-</section>
 
+            <div class="review-card">
+                <div>
+                    <span style="color: #ffb703; font-size: 1.2rem;">★★★★★</span>
+                    <strong> - Amanda M.</strong>
+                </div>
+                <p>"Atendimento excelente no salão e o delivery é extremamente rápido. A pizza de 4 queijos trufada é imperdível!"</p>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <span style="color: #ffb703; font-size: 1.2rem;">★★★★★</span>
+                    <strong> - Lucas Ferreira</strong>
+                </div>
+                <p>"O rodízio vale muito a pena! Muita variedade, atendimento ágil e as pizzas doces são espetaculares."</p>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <span style="color: #ffb703; font-size: 1.2rem;">★★★★★</span>
+                    <strong> - Camila P.</strong>
+                </div>
+                <p>"Pedi pelo WhatsApp e a entrega demorou menos de 30 minutos. Pizza crocante e muito bem recheada."</p>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <span style="color: #ffb703; font-size: 1.2rem;">★★★★★</span>
+                    <strong> - Bruno Souza</strong>
+                </div>
+                <p>"Ambiente muito agradável para ir com a família. A pizza de Calabresa Premium é a minha favorita de longe."</p>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <span style="color: #ffb703; font-size: 1.2rem;">★★★★★</span>
+                    <strong> - Juliana A.</strong>
+                </div>
+                <p>"Amei as opções vegetarianas! É raro encontrar uma pizza veggie tão bem temperada e saborosa."</p>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <span style="color: #ffb703; font-size: 1.2rem;">★★★★★</span>
+                    <strong> - Fernando Costa</strong>
+                </div>
+                <p>"Massa artesanal no ponto certo, borda recheada perfeita. O Fornetto virou a nossa pizzaria oficial dos finais de semana."</p>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <span style="color: #ffb703; font-size: 1.2rem;">★★★★★</span>
+                    <strong> - Mariana R.</strong>
+                </div>
+                <p>"Atendimento impecável tanto na mesa quanto no delivery. Ingredientes de altíssima qualidade."</p>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <span style="color: #ffb703; font-size: 1.2rem;">★★★★★</span>
+                    <strong> - Gustavo Oliveira</strong>
+                </div>
+                <p>"Preço justo pela excelente qualidade que entregam. O rodízio no final de semana é sensacional!"</p>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <span style="color: #ffb703; font-size: 1.2rem;">★★★★★</span>
+                    <strong> - Patricia M.</strong>
+                </div>
+                <p>"Chegou super rápida, embalagem bem selada e a pizza quentíssima. Recomendo de olhos fechados!"</p>
+            </div>
+        </div>
+    </section>
+           
     <!-- Botão Flutuante do WhatsApp -->
     <a href="https://wa.me/5500000000000?text=Olá!%20Vim%20pelo%20site." class="whatsapp-float" target="_blank" title="Falar no WhatsApp">
         💬
